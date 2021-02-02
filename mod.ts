@@ -1,1 +1,6 @@
-console.log("hello world!!")
+async function readFile() {
+  const data = await Deno.readTextFile("hello.txt")
+  console.log(data)
+}
+
+await readFile()
