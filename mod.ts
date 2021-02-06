@@ -1,6 +1,7 @@
 import { join } from 'https://deno.land/std/path/mod.ts';
 import { BufReader } from "https://deno.land/std/io/bufio.ts";
 import { parse } from 'https://deno.land/std/encoding/csv.ts';
+import * as _ from "https://raw.githubusercontent.com/lodash/lodash/4.17.20-es/lodash.js"
 
 async function readTextFile() {
   const path = join("text_files","hello.txt")
@@ -48,8 +49,12 @@ async function findHabitablePanets() {
     && stellerRadius > 0.99 && stellerRadius > 1.01
   }) 
 
-  return planets
+  return planets.map((planet)=>{
+    return _.pick(planet,["keplar_name","koi_count","koi_steff","koi_prad","koi_smass","koi_srad"])
+  })
 }
 
 const result = await findHabitablePanets()
+console.log(result)
 console.log(`${result.length} habitable planets founded!`)
+
